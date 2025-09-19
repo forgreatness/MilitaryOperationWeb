@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './index.css'
 import App from './App.jsx'
-import { ThemeContextProvider } from './concept-practices/ContextAPIComponent.jsx';
+import { ThemeContextProvider } from './concept-practices/context-api/ContextAPIComponent.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

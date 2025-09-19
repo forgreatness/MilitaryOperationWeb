@@ -1,8 +1,11 @@
 import React, { useState, useContext } from 'react';
 
-import { ThemeContext } from '../concept-practices/ContextAPIComponent';
-import PageLayout from '../concept-practices/ContextAPIPractice3/PageLayout';
+import { ThemeContext } from '../concept-practices/context-api/ContextAPIComponent';
+import PageLayout from '../concept-practices/context-api/ContextAPIPractice3/PageLayout';
 
+/*
+    HomePageComponent with context Usage
+*/
 export default function HomePage() {
     const { theme, handleThemeChange } = useContext(ThemeContext);
 
@@ -11,7 +14,7 @@ export default function HomePage() {
             <PageLayout>
                 <main>
                     Hello there, this is danh military home page
-                    <div class='theme-action-container'>
+                    <div className='theme-action-container'>
                         <button onClick={handleThemeChange}>Change Theme</button>
                         <p>Theme now is {theme}</p>
                     </div>
