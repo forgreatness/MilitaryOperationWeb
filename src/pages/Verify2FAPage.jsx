@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../hooks/useAuth';
@@ -23,13 +23,10 @@ export default function Verify2FAPage() {
 
     const handleCodeInputChange = (e) => {
         // Current Target refers to target the handler is attached to and the e.target refers to the element which capture the event
-        e.preventDefault(); // base on the above information the preventDefault always refer to e.target 
-
+        // e.preventDefault(); // base on the above information the preventDefault always refer to e.target 
         let newCodeValue = e.target.value ?? "";
 
-        if (newCodeValue) {
-            setCode(newCodeValue);
-        }
+        setCode(newCodeValue);
     }
 
     return (

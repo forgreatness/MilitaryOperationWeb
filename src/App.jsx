@@ -28,8 +28,16 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/verify-2fa" element={<Verify2FAPage />} />
+        <Route path="/login" element={
+          <ProtectedRoute>
+            <LoginPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/verify-2fa" element={
+          <ProtectedRoute>
+            <Verify2FAPage />
+          </ProtectedRoute>
+        } />
         <Route path="/contextAPIComponent" element={<ContextAPIArticleComponent />} />
         <Route path="/profile" element={
           <ProtectedRoute>
@@ -38,7 +46,7 @@ function App() {
         } />
       </Routes>
     </AuthProvider>
-    // Routes is like the switch statement 
+    // Routes is like the switch statement  
   )
 }
 

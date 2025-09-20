@@ -6,7 +6,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useLocalStorage("user", null);
-    const [is2FAVerified, setIs2FAVerified] = useState(false);
+    const [is2FAVerified, setIs2FAVerified] = useLocalStorage("2FAVerified", false);
     const navigate = useNavigate();
 
     const login = async (data) => {
