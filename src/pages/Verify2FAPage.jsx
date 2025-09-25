@@ -15,7 +15,7 @@ export default function Verify2FAPage() {
         const isValid = await verify2FACode(code);
 
         if (isValid) {
-            navigate('/profile');
+            navigate('/dashboard/profile');
         } else {
             alert("Invalid code, Please try again.");
         }

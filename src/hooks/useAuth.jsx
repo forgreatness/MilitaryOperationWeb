@@ -1,11 +1,11 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from './useLocalStorage';
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useLocalStorage("user", null);
+export const AuthProvider = ({ children, userData }) => {
+    const [user, setUser] = useLocalStorage("user", userData);
     const [is2FAVerified, setIs2FAVerified] = useLocalStorage("2FAVerified", false);
     const navigate = useNavigate();
 
@@ -21,26 +21,33 @@ export const AuthProvider = ({ children }) => {
         navigate("/", { replace: true });
     };
 
-    const value = {
-        user,
-        is2FAVerified,
-        login,
-        logout,
-        verify2FACode
-    };
-
-    async function verify2FACode(code) {
+    async function verify2FACode(code) { // This function is hoisted (if needed it hoisted defining it as function is how it should be)
         if (code === "0000") {
             setIs2FAVerified(true);
-            navigate("/profile");
             return true;
         }
         
         return false;
     }
 
+    // const value = {
+    //     user,
+    //     is2FAVerified,
+    //     login,
+    //     logout,
+    //     verify2FACode
+    // };
+
+    const memoizedAuthContextValue = useMemo(() => ({
+        user,
+        is2FAVerified,
+        login,
+        logout,
+        verify2FACode
+    }), [user]);
+
     return (
-        <AuthContext.Provider value={value}>
+        <AuthContext.Provider value={memoizedAuthContextValue}>
             {children}
         </AuthContext.Provider>
     );
