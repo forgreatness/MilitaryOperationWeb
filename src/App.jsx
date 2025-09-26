@@ -14,6 +14,7 @@ import { LoginPage } from './pages/LoginPage';
 import { GeneralLayout } from './components/GeneralPageLayout';
 import Verify2FAPage from './pages/Verify2FAPage';
 import { AuthLayout } from './components/AuthLayout';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // export const HomePage = () => {
 //   return (
@@ -33,14 +34,14 @@ const getUserData = () =>
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={<AuthLayout />} loader={getUserData}>
+    <Route element={<AuthLayout />} loader={getUserData} HydrateFallback={CircularProgress}>
       <Route element={<GeneralLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/verify-2fa" element={<Verify2FAPage />} /> 
       </Route>
 
-      <Route path='/dashboard' element={<ProtectedLayout />}>
+      <Route path="/dashboard" element={<ProtectedLayout />}>
         <Route path="profile" element={<ProfilePage />} />
       </Route>
     </Route>

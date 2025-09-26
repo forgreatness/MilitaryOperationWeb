@@ -44,7 +44,7 @@ export const AuthProvider = ({ children, userData }) => {
         login,
         logout,
         verify2FACode
-    }), [user]);
+    }), [user, is2FAVerified]);
 
     return (
         <AuthContext.Provider value={memoizedAuthContextValue}>

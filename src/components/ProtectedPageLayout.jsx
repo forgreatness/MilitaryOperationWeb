@@ -38,13 +38,13 @@ export function ProtectedLayout() {
 
     // Case #3: if the user has login, and already verified and they are trying to login or verify again then take them to profile because they shouudn't be loging in twice
     if (user && is2FAVerified && (useMatch("/verify-2fa") || useMatch("/login"))) {
-        return <Navigate to="/login" />;
+        return <Navigate to="/dashboard/profile" />;
     }
 
     return (
         <div>
             <MainAppBar pages={[
-                { label: "Profile", path: "profile" }
+                { label: "Profile", path: "/dashboard/profile" }
             ]} />
             {outlet}
         </div>

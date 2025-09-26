@@ -28,9 +28,9 @@ export function MainAppBar({ pages }) {
         setAnchorElNav(e.currentTarget); // set the component state anchorElNav to the element which this event handler is attached to
     }
 
-    const handleCloseNavMenu = (path) => {
+    const handleCloseNavMenu = (e, path) => {
         setAnchorElNav(null);
-
+        
         if (path) {
             navigate(path);
         }
@@ -48,9 +48,9 @@ export function MainAppBar({ pages }) {
                         <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit"> { /* Seem to be the wrapper for any material ui icons-material icon */ }
                             <MenuIcon /> { /* MenuIcon is a type of icon from icons-material */ }
                         </IconButton>
-                        <Menu id="appbar-menu" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left" }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "block", md: "non" } }}>
+                        <Menu id="appbar-menu" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left" }} open={Boolean(anchorElNav)} onClose={(e) => handleCloseNavMenu(e, "")} sx={{ display: { xs: "block", md: "non" } }}>
                             {pages?.map(page => (
-                                <MenuItem key={page.label} onClick={() => handleCloseNavMenu(page.path)}>
+                                <MenuItem key={page.label} onClick={(e) => handleCloseNavMenu(e, page.path)}>
                                     <Typography textAlign="center">{page.label}</Typography>
                                 </MenuItem>
                             ))}
@@ -66,7 +66,7 @@ export function MainAppBar({ pages }) {
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                         {pages?.map(page => (
-                            <Button key={page.label} onClick={() => handleCloseNavMenu(page.path)} sx={{ my: 2, color: "white", display: "block" }}>
+                            <Button key={page.label} onClick={(e) => handleCloseNavMenu(e, page.path)} sx={{ my: 2, color: "white", display: "block" }}>
                                 {page.label}
                             </Button>
                         ))}
