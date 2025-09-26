@@ -1,22 +1,23 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../hooks/useAuth';
 
 export default function Verify2FAPage() {
-    const { verify2FACode } = useAuth();
+    const navigate = useNavigate();
+    const { is2FAVerified, verify2FACode } = useAuth();
     const [code, setCode] = useState("");
 
-    const navigate = useNavigate();
+    useEffect(() => {
+        console.log('finally we see the login multiverified verified ', is2FAVerified);
+    }, [is2FAVerified]);
     
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const isValid = await verify2FACode(code);
 
-        if (isValid) {
-            navigate('/dashboard/profile');
-        } else {
+        if (!isValid) {
             alert("Invalid code, Please try again.");
         }
     };
