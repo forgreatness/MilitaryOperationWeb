@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { ThemeContext } from '../concept-practices/context-api/ContextAPIComponent';
 import PageLayout from '../concept-practices/context-api/ContextAPIPractice3/PageLayout';

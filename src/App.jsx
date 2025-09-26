@@ -24,17 +24,19 @@ import CircularProgress from '@mui/material/CircularProgress';
 //   )
 // }
 
-const getUserData = () =>
+const getUserData = () => //This getUserData is run everytime userNavigate or intial page load or url navigation is commited. 
   new Promise((resolve) =>
     setTimeout(() => {
       const user = window.localStorage.getItem("user");
       resolve(user);
+
+      console.log('when do i load userData ', user);
     }, 3000)
   );
 
-export const router = createBrowserRouter(
+export const router = createBrowserRouter( // This function createBrowserRouter is knonw to be client side rendering (server side rendering uses createStaticRouter)
   createRoutesFromElements(
-    <Route element={<AuthLayout />} loader={getUserData} HydrateFallback={CircularProgress}>
+    <Route element={<AuthLayout />} loader={getUserData} HydrateFallback={CircularProgress}> { /* For each route that goes to home the default AuthLayout will be use as the compnent, loader specify the function that loads the data before the authLayout is rendered (that's before even mount), hydratefallback is what to render while component is rendering */ }
       <Route element={<GeneralLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />

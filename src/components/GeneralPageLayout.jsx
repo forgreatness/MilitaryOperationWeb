@@ -1,11 +1,11 @@
-import { Navigate, useOutlet, Outlet } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import { Navigate, useOutlet } from "react-router-dom";
 
+import { useAuth } from "../hooks/useAuth";
 import { MainAppBar } from "./AppBar";
 
 export const GeneralLayout = () => {
-  const { user, is2FAVerified } = useAuth();
   const outlet = useOutlet();
+  const { user, is2FAVerified } = useAuth();
 
   if (user && is2FAVerified) {
     return <Navigate to="/dashboard/profile" replace />;
@@ -30,7 +30,7 @@ export const GeneralLayout = () => {
           { label: "Home", path: "/" },
           { label: "Login", path: "/login" }
         ]} />
-      <Outlet />
+      {outlet}
     </div>
   );
 };

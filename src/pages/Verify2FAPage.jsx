@@ -8,9 +8,9 @@ export default function Verify2FAPage() {
     const { is2FAVerified, verify2FACode } = useAuth();
     const [code, setCode] = useState("");
 
-    useEffect(() => {
-        console.log('finally we see the login multiverified verified ', is2FAVerified);
-    }, [is2FAVerified]);
+    // useEffect(() => {
+
+    // }, [is2FAVerified]);
     
     const handleSubmit = async (e) => {
         e.preventDefault();
