@@ -1,6 +1,6 @@
 import { useState } from 'react'
 // import { Routes, Route, useRoutes } from 'react-router-dom';
-import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import { Link, Route, createBrowserRouter, createRoutesFromElements, useLocation } from 'react-router-dom';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -15,6 +15,7 @@ import { GeneralLayout } from './components/GeneralPageLayout';
 import Verify2FAPage from './pages/Verify2FAPage';
 import { AuthLayout } from './components/AuthLayout';
 import CircularProgress from '@mui/material/CircularProgress';
+import { LinkOne, LinkTwo } from './components/LinkComponent';
 
 // export const HomePage = () => {
 //   return (
@@ -46,9 +47,12 @@ export const router = createBrowserRouter( // This function createBrowserRouter 
       <Route path="/dashboard" element={<ProtectedLayout />}>
         <Route path="profile" element={<ProfilePage />} />
       </Route>
+      <Route path="/link-one" element={<LinkOne /> } /> { /* This component was added to practice using Link based navigation and passing state across navigation. But it's rare to need to know what was the state from previous compnent before navigation unless you really want to know where you started navigating from */ }
+      <Route path="/link-two" element={<LinkTwo /> } /> { /* Same idea as above */ }
     </Route>
   )
 );
+
 // export function router() {
 //   const getUserData = () => {
 //     return new Promise((resolve) => {

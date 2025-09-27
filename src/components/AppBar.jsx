@@ -9,9 +9,10 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../hooks/useAuth";
+import { display } from "@mui/system";
 
 export function MainAppBar({ pages }) {
     const [anchorElNav, setAnchorElNav] = useState(null); //Calling useState hook to initialize the anchorE1Nav state for AppBar Component
@@ -75,6 +76,12 @@ export function MainAppBar({ pages }) {
                                 {"logout"}
                             </Button>
                         )}
+                        <Button component={Link} to="/link-one" state={{ foo: "this is state for link 1" }} sx={{ my: 2, color: "white", display: "block" }}>
+                            Link 1 Nav
+                        </Button>
+                        <Button component={Link} to="/link-two" state={{ foo: "this is state for link 1" }} sx={{ my: 2, color: "white", display: "block" }}>
+                            Link 2 Nav
+                        </Button>
                     </Box>
                 </Toolbar>
             </Container>
